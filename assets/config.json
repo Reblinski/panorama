@@ -1,0 +1,27 @@
+{
+    "backgrounds": {
+        "folder": "backgrounds",
+        "prefix": "M360_C_0",
+        "extension": "jpg",
+        "count": 8,
+        "preload": 3
+    },
+    "offers": [
+        "A Plane001",
+        "A Plane002",
+        "A Plane003",
+        "A Plane004",
+        "A Plane005",
+        "A Plane006",
+        "A Plane007",
+        "A Plane008",
+        "A Plane009",
+        "A Plane010",
+        "A Plane011",
+        "A Plane012"
+    ],
+    "ui": {
+        "scrollerPrev": "prev.png",
+        "scrollerNext": "next.png"
+    }
+}
