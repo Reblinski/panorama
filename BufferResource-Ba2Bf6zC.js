@@ -1,4 +1,4 @@
-import { w as U, g, d as c, u as S, B as _, e as m, E as I, f as p } from "./pixi-panorama-RrriKmcw.js";
+import { w as U, g, d as c, u as S, B as _, e as m, E as I, f as p } from "./pixi-panorama-Cfptddmv.js";
 const x = {
   name: "local-uniform-bit",
   vertex: {

@@ -211,7 +211,7 @@ const Ps = (s) => {
   },
   test: () => !0,
   load: async () => {
-    await import("./browserAll-BOFSrpGA.js");
+    await import("./browserAll-Bf-mSunQ.js");
   }
 }, sa = {
   extension: {
@@ -221,7 +221,7 @@ const Ps = (s) => {
   },
   test: () => typeof self < "u" && self.WorkerGlobalScope !== void 0,
   load: async () => {
-    await import("./webworkerAll-_-rXNOUY.js");
+    await import("./webworkerAll-DYJdSVp5.js");
   }
 };
 class q {
@@ -9473,17 +9473,17 @@ async function jo(s) {
   for (let n = 0; n < t.length; n++) {
     const a = t[n];
     if (a === "webgpu" && await Xo()) {
-      const { WebGPURenderer: o } = await import("./WebGPURenderer-R7dIy__J.js");
+      const { WebGPURenderer: o } = await import("./WebGPURenderer-C-TWApzB.js");
       e = o, i = { ...s, ...s.webgpu };
       break;
     } else if (a === "webgl" && Yo(
       s.failIfMajorPerformanceCaveat ?? wn.defaultOptions.failIfMajorPerformanceCaveat
     )) {
-      const { WebGLRenderer: o } = await import("./WebGLRenderer-BYC4Kt7j.js");
+      const { WebGLRenderer: o } = await import("./WebGLRenderer-DS-qmf8r.js");
       e = o, i = { ...s, ...s.webgl };
       break;
     } else if (a === "canvas") {
-      const { CanvasRenderer: o } = await import("./CanvasRenderer-BzJIA6Lv.js");
+      const { CanvasRenderer: o } = await import("./CanvasRenderer-CDeVqC1M.js");
       e = o, i = { ...s, ...s.canvasOptions };
       break;
     }
@@ -9949,7 +9949,7 @@ const ms = {
     }
     const [h, { BitmapFont: l }] = await Promise.all([
       e.load(a),
-      import("./BitmapFont-DUAvr5h6.js")
+      import("./BitmapFont-CYGOZM5f.js")
     ]), c = a.map((f) => h[f.src]);
     return new l({
       data: i,
@@ -17316,7 +17316,7 @@ class Hc {
    * @param {Object} callbacks - Funkcje wywoływane przy zdarzeniach (start/koniec zmiany)
    */
   constructor(t, e, i = {}) {
-    this.app = t, this.folder = e.folder, this.prefix = e.prefix, this.extension = e.extension, this.totalImages = e.count, this.preloadCount = e.preload !== void 0 ? e.preload : 3, this.currentIndex = 0, this.nextIndex = 0, this.currentRequestId = 0, this.onStartChange = i.onStartChange || (() => {
+    this.app = t, this.folder = e.folder, this.prefix = e.prefix, this.extension = e.extension, this.totalImages = e.count, this.preloadCount = e.preload !== void 0 ? e.preload : 3, this.baseUrl = i.baseUrl ?? "", this.currentIndex = 0, this.nextIndex = 0, this.currentRequestId = 0, this.onStartChange = i.onStartChange || (() => {
     }), this.onFinishChange = i.onFinishChange || (() => {
     }), this.sprite = new dt(), this.sprite.anchor.set(0.5), this.sprite.position.set(
       this.app.screen.width / 2,
@@ -17328,8 +17328,8 @@ class Hc {
    * Przykład: dla index=0 -> "assets/backgrounds/bg001.png"
    */
   getPathForIndex(t) {
-    const i = t.toString().padStart(3, "0"), r = `${this.prefix}${i}.${this.extension}`;
-    return `assets/${this.folder}/${r}`;
+    const i = t.toString().padStart(3, "0"), r = `${this.prefix}${i}.${this.extension}`, n = `assets/${this.folder}/${r}`;
+    return this.baseUrl ? `${this.baseUrl}/${n}` : n;
   }
   /**
    * Zmienia aktualne zdjęcie o zadaną wartość (kierunek).
@@ -17408,8 +17408,8 @@ class Vc {
   }
 }
 class Yc {
-  constructor(t, e) {
-    this.app = t, this.offersList = e, this.currentRequestId = 0, this.container = new ot(), this.container.zIndex = 5, this.app.stage.addChild(this.container), this.popupContainer = new ot(), this.popupContainer.zIndex = 100, this.app.stage.addChild(this.popupContainer), this.onOfferClick = null;
+  constructor(t, e, i = {}) {
+    this.app = t, this.offersList = e, this.currentRequestId = 0, this.baseUrl = i.baseUrl ? i.baseUrl.replace(/\/$/, "") : "", this.container = new ot(), this.container.zIndex = 5, this.app.stage.addChild(this.container), this.popupContainer = new ot(), this.popupContainer.zIndex = 100, this.app.stage.addChild(this.popupContainer), this.onOfferClick = null;
   }
   /**
    * Usuwa wszystkie strefy klikalne (np. przy zmianie tła) i czyści pamięć.
@@ -17449,33 +17449,33 @@ class Yc {
    * Pobiera plik PNG z nakładką oferty i dodaje go do sceny.
    */
   async loadOneOffer(t, e, i) {
-    const r = `assets/offers/${t}/${t}_${e}.png`;
+    const r = `assets/offers/${t}/${t}_${e}.png`, n = this.baseUrl ? `${this.baseUrl}/${r}` : r;
     try {
-      const n = await ut.load(r);
+      const a = await ut.load(n);
       if (i !== void 0 && i !== this.currentRequestId)
         return;
-      const a = new dt(n);
-      a.position.set(0, 0), a.alpha = 0.05;
-      const o = n.source.resource;
-      if (o) {
-        const h = document.createElement("canvas");
-        h.width = o.width, h.height = o.height;
-        const l = h.getContext("2d");
-        l.drawImage(o, 0, 0);
-        const c = l.getImageData(0, 0, h.width, h.height);
-        a.hitArea = new Vc(
-          c.data,
-          h.width,
-          h.height
+      const o = new dt(a);
+      o.position.set(0, 0), o.alpha = 0.05;
+      const h = a.source.resource;
+      if (h) {
+        const l = document.createElement("canvas");
+        l.width = h.width, l.height = h.height;
+        const c = l.getContext("2d");
+        c.drawImage(h, 0, 0);
+        const u = c.getImageData(0, 0, l.width, l.height);
+        o.hitArea = new Vc(
+          u.data,
+          l.width,
+          l.height
         );
       }
-      a.eventMode = "static", a.cursor = "pointer", a.on("pointertap", () => {
+      o.eventMode = "static", o.cursor = "pointer", o.on("pointertap", () => {
         this.onOfferClick ? this.onOfferClick(t) : this.showPopup(t);
-      }), a.on("pointerover", () => {
-        a.alpha = 0.8;
-      }), a.on("pointerout", () => {
-        a.alpha = 0.05;
-      }), this.container.addChild(a);
+      }), o.on("pointerover", () => {
+        o.alpha = 0.8;
+      }), o.on("pointerout", () => {
+        o.alpha = 0.05;
+      }), this.container.addChild(o);
     } catch {
     }
   }
@@ -17486,17 +17486,17 @@ class Yc {
     this.popupContainer.removeChildren();
     const e = new Ue();
     e.rect(0, 0, this.app.screen.width, this.app.screen.height), e.fill({ color: 0, alpha: 0.7 }), e.eventMode = "static", e.on("pointertap", () => this.popupContainer.removeChildren()), this.popupContainer.addChild(e);
-    const i = `assets/offers/${t}/${t}.jpg`;
+    const i = `assets/offers/${t}/${t}.jpg`, r = this.baseUrl ? `${this.baseUrl}/${i}` : i;
     try {
-      const r = await ut.load(i), n = new dt(r);
-      n.anchor.set(0.5), n.position.set(
+      const n = await ut.load(r), a = new dt(n);
+      a.anchor.set(0.5), a.position.set(
         this.app.screen.width / 2,
         this.app.screen.height / 2
       );
-      const a = Math.min(this.app.screen.width * 0.8 / n.width, 1);
-      n.scale.set(a), this.popupContainer.addChild(n);
-    } catch (r) {
-      console.error(`Nie udało się załadować zdjęcia popupu: ${r}`);
+      const o = Math.min(this.app.screen.width * 0.8 / a.width, 1);
+      a.scale.set(o), this.popupContainer.addChild(a);
+    } catch (n) {
+      console.error(`Nie udało się załadować zdjęcia popupu: ${n}`);
     }
   }
   /**
@@ -17514,7 +17514,9 @@ class Yc {
 }
 class Xc {
   constructor(t, e = {}) {
-    this.app = t, this.container = new ot(), this.app.stage.addChild(this.container), this.prevImgPath = e.prevImgPath ?? "assets/scroller/prev.png", this.nextImgPath = e.nextImgPath ?? "assets/scroller/next.png", this.onPrevClick = e.onPrevClick ?? (() => console.log("Prev clicked")), this.onNextClick = e.onNextClick ?? (() => console.log("Next clicked")), this.makeSprites();
+    this.app = t, this.container = new ot(), this.app.stage.addChild(this.container);
+    const i = e.baseUrl ? e.baseUrl.replace(/\/$/, "") : "", r = "assets/scroller/prev.png", n = "assets/scroller/next.png";
+    this.prevImgPath = i ? `${i}/${r}` : r, this.nextImgPath = i ? `${i}/${n}` : n, this.onPrevClick = e.onPrevClick ?? (() => console.log("Prev clicked")), this.onNextClick = e.onNextClick ?? (() => console.log("Next clicked")), this.makeSprites();
   }
   /**
    * Ładuje grafiki strzałek i konfiguruje ich interaktywność.
@@ -17564,7 +17566,7 @@ class Zn extends HTMLElement {
     super(), this.attachShadow({ mode: "open" }), this.shadowRoot.innerHTML = `
       <style>${jc}</style>
       <div id="canvas-container"></div>
-    `, this._app = null, this._config = null, this._managers = {}, this._resizeObserver = null, this._abortController = null, this._isReady = !1, this._handleResize = this._handleResize.bind(this);
+    `, this._app = null, this._config = null, this._managers = {}, this._resizeObserver = null, this._abortController = null, this._isReady = !1, this._assetsBaseUrl = "", this._handleResize = this._handleResize.bind(this);
   }
   // ==================== Lifecycle callbacks ====================
   connectedCallback() {
@@ -17581,6 +17583,9 @@ class Zn extends HTMLElement {
           break;
         case "auto-resize":
           this._setupResizeObserver();
+          break;
+        case "assets-base-url":
+          this._isReady && i && (this._assetsBaseUrl = i.replace(/\/$/, ""), this._reloadConfig(this.getAttribute("config-url")));
           break;
       }
   }
@@ -17637,13 +17642,15 @@ class Zn extends HTMLElement {
       console.error("PixiPanorama: Brak atrybutu 'config-url'");
       return;
     }
+    const e = this.getAttribute("assets-base-url");
+    this._assetsBaseUrl = e ? e.replace(/\/$/, "") : "";
     try {
       await this._loadConfig(t), await this._initPixi(), this._initManagers(), this._setupResizeObserver(), this._isReady = !0, this._emit("panorama-ready", {
         totalImages: this.totalImages,
         currentIndex: this.currentIndex
       });
-    } catch (e) {
-      console.error("PixiPanorama: Błąd inicjalizacji:", e), this._emit("panorama-error", { error: e.message });
+    } catch (i) {
+      console.error("PixiPanorama: Błąd inicjalizacji:", i), this._emit("panorama-error", { error: i.message });
     }
   }
   async _loadConfig(t) {
@@ -17670,12 +17677,15 @@ class Zn extends HTMLElement {
   }
   _initManagers() {
     const t = this._config.offers || [];
-    this._managers.offers = new Yc(this._app, t), this._managers.offers.onOfferClick = (e) => {
+    this._managers.offers = new Yc(this._app, t, {
+      baseUrl: this._assetsBaseUrl
+    }), this._managers.offers.onOfferClick = (e) => {
       this._managers.offers.showPopup(e), this._emit("offer-click", { offerName: e });
     }, this._managers.background = new Hc(
       this._app,
       this._config.backgrounds,
       {
+        baseUrl: this._assetsBaseUrl,
         onStartChange: () => {
           this._managers.offers.hide();
         },
@@ -17690,7 +17700,8 @@ class Zn extends HTMLElement {
       }
     ), this._managers.scroller = new Xc(this._app, {
       onPrevClick: () => this.prev(),
-      onNextClick: () => this.next()
+      onNextClick: () => this.next(),
+      baseUrl: this._assetsBaseUrl
     }), this._handleResize();
   }
   _setupResizeObserver() {
@@ -17733,7 +17744,7 @@ class Zn extends HTMLElement {
     }), this._app = null);
   }
 }
-ui(Zn, "observedAttributes", ["config-url", "auto-resize"]);
+ui(Zn, "observedAttributes", ["config-url", "auto-resize", "assets-base-url"]);
 customElements.define("pixi-panorama", Zn);
 export {
   un as $,

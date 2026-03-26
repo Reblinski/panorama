@@ -1,4 +1,4 @@
-import { D as n, n as c, c as r } from "./pixi-panorama-RrriKmcw.js";
+import { D as n, n as c, c as r } from "./pixi-panorama-Cfptddmv.js";
 class l {
   constructor(a) {
     this._canvasPool = /* @__PURE__ */ Object.create(null), this.canvasOptions = a || {}, this.enableFullScreen = !1;

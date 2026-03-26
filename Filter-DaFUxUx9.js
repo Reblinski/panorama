@@ -1,4 +1,4 @@
-import { S as n, a as u, G as o, b as f } from "./pixi-panorama-RrriKmcw.js";
+import { S as n, a as u, G as o, b as f } from "./pixi-panorama-Cfptddmv.js";
 const s = class i extends n {
   /**
    * @param options - The optional parameters of this filter.
